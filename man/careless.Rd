@@ -3,7 +3,6 @@
 \docType{package}
 \name{careless}
 \alias{careless}
-\alias{careless-package}
 \title{careless: A package providing procedures for computing indices of careless responding}
 \description{
 Careless or insufficient effort responding in surveys, i.e. responding to items without regard to their content, 
@@ -58,5 +57,5 @@ for the psychometric synonyms/antonyms index.
 }
 
 \author{
-Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }

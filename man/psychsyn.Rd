@@ -4,7 +4,7 @@
 \alias{psychsyn}
 \title{Computes the psychometric synonym/antonym score}
 \usage{
-psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE)
+psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE, resample_na = TRUE)
 }
 \arguments{
 \item{x}{is a matrix of item responses}
@@ -12,10 +12,12 @@ psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE)
 \item{critval}{is the minimum magnitude of the correlation between two items
 in order for them to be considered psychometric synonyms. Defaults to .60}
 
-\item{anto}{determines whether psychometric anonyms are returned instead of
+\item{anto}{determines whether psychometric antonyms are returned instead of
 psychometric synonyms. Defaults to \code{FALSE}}
 
 \item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
+
+\item{resample_na}{if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.}
 }
 \description{
 Takes a matrix of item responses and identifies item pairs that are highly
@@ -46,5 +48,5 @@ Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey da
 adequate critical value for the size of the correlation.
 }
 \author{
-Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }

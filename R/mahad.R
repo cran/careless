@@ -10,7 +10,7 @@
 #' @param flag Flag potential outliers using the confidence level specified in parameter \code{confidence}
 #' @param confidence The desired confidence level of the result
 #' @param na.rm Should missing data be deleted
-#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
 #' \emph{Psychological Methods, 17(3)}, 437-455. \doi{10.1037/a0028085}
@@ -22,11 +22,25 @@
 #' mahad_flags <- mahad(careless_dataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
 
 mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE) {
-  raw <- as.numeric(psych::outlier(x, plot, bad = 0, na.rm = na.rm))
+  if(na.rm == FALSE) {
+    if(any(is.na(x)) == TRUE) {stop("Some values are NA. Mahalanobis distance was not computed.
+                                      Use na.rm = TRUE to use available cases.", call. = FALSE)}
+    }
+  #remove rows with all NA and issue warning
+  complete.na <- apply(x, 1, function(y) { all(is.na(y)) } )
+  if(any(complete.na)) {
+    warning("Some cases contain only NA values. The Mahalanobis distance will be calculated using available cases.",
+            call. = FALSE) }
+  x_filtered <- x[!complete.na,]
+
+  maha_data <- as.numeric(psych::outlier(x_filtered, plot, bad = 0, na.rm = na.rm))
+  d_sq <- rep_len(NA, nrow(x_filtered))
+  d_sq[!complete.na] <- maha_data
+
   if(flag == TRUE) {
     cut <- stats::qchisq(confidence, ncol(x))
-    flagged <- (raw > cut)
-    return(data.frame(raw, flagged))
+    flagged <- (d_sq > cut)
+    return(data.frame(d_sq = d_sq, flagged = flagged))
   }
-  else{ return(raw) }
+  else{ return(d_sq) }
 }

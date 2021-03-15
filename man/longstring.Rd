@@ -9,7 +9,7 @@ longstring(x, avg = FALSE)
 \arguments{
 \item{x}{a matrix of data (e.g. item responses)}
 
-\item{avg}{a boolean indicating whether to additionally return the average length of identical consecutive responses}
+\item{avg}{logical indicating whether to additionally return the average length of identical consecutive responses}
 }
 \description{
 Takes a matrix of item responses and, beginning with the second column (i.e., second item)
@@ -28,5 +28,5 @@ Johnson, J. A. (2005). Ascertaining the validity of individual protocols
 from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 }
 \author{
-Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }
